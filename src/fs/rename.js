@@ -1,15 +1,14 @@
 import {resolve} from 'path';
-import {$dirname} from '../utils/globals.js'
+import {$dirName, notExistError, existError} from '../utils';
 import {rename as asyncRename} from 'fs/promises';
-import {existOrError, notExistOrError} from '../utils/helpers.js'
 
 const rename = async () => {
-    const dirPath = resolve($dirname(import.meta.url), 'files')
+    const dirPath = resolve($dirName(import.meta.url), 'files')
     const targetFilePath = resolve(dirPath, 'wrongFilename.txt')
     const newFilePath = resolve(dirPath, 'properFilename.md')
 
-    notExistOrError(targetFilePath)
-    existOrError(newFilePath)
+    notExistError(targetFilePath)
+    existError(newFilePath)
 
     await asyncRename(targetFilePath, newFilePath)
 };

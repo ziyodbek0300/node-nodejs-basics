@@ -1,12 +1,11 @@
 import {resolve} from 'path';
-import {$dirname} from '../utils/globals.js'
-import {notExistOrError} from '../utils/helpers.js'
+import {$dirName, notExistError} from '../utils';
 import {readdir} from 'fs/promises';
 
 const list = async () => {
-    const dirPath = resolve($dirname(import.meta.url), 'files')
+    const dirPath = resolve($dirName(import.meta.url), 'files')
 
-    notExistOrError(dirPath);
+    notExistError(dirPath);
 
     (await readdir(dirPath, {withFileTypes: true}))
         .filter(fileOrDir => !fileOrDir.isDirectory())

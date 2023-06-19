@@ -1,12 +1,11 @@
 import {resolve} from 'path';
-import {$dirname} from '../utils/globals.js'
-import {notExistOrError} from '../utils/helpers.js'
+import {$dirName, notExistError} from '../utils'
 import {readFile} from 'fs/promises';
 
 const read = async () => {
-    const filePath = resolve($dirname(import.meta.url), 'files', 'fileToRead.txt')
+    const filePath = resolve($dirName(import.meta.url), 'files', 'fileToRead.txt')
 
-    notExistOrError(filePath)
+    notExistError(filePath)
 
     const fileBody = await readFile(filePath, {encoding: 'utf-8'})
     console.log(fileBody)

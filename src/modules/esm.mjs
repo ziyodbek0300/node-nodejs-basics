@@ -1,7 +1,7 @@
 import { createServer as createServerHttp } from 'http';
 import { release, version } from 'os';
 import path from 'path'
-import { $dirname, $filename } from '../utils/globals.js';
+import { $dirName, $fileName } from '../utils';
 import a from './files/a.json' assert {type: 'json'}
 import b from './files/b.json' assert {type: 'json'}
 import * as c from './files/c.js'
@@ -21,9 +21,8 @@ if (random > 0.5) {
 console.log(`Release ${release()}`);
 console.log(`Version ${version()}`);
 console.log(`Path segment separator is "${path.sep}"`);
-
-console.log(`Path to current file is ${$filename}`);
-console.log(`Path to current directory is ${$dirname}`);
+console.log(`Path to current file is ${$fileName}`);
+console.log(`Path to current directory is ${$dirName}`);
 
 const myServer = createServerHttp((_, res) => {
     res.end('Request accepted');

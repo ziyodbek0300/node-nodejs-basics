@@ -1,6 +1,6 @@
-import { pipeline } from "stream/promises";
-import { Transform } from "stream";
-import { stdin, stdout } from "process";
+import {pipeline} from "stream/promises";
+import {Transform} from "stream";
+import {stdin, stdout} from "process";
 
 const transform = async () => {
     const stream = new Transform({
@@ -10,7 +10,7 @@ const transform = async () => {
         }
     })
 
-    await pipeline(stdin, stream,stdout)
+    await pipeline(stdin, stream, stdout)
 };
 
 await transform();

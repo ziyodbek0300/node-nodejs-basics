@@ -1,12 +1,11 @@
 import {resolve} from "path";
-import {$dirname} from '../utils/globals.js';
-import {notExistOrError} from '../utils/helpers.js'
+import {$dirName, notExistError} from '../utils';
 import {rm} from "fs/promises";
 
 const remove = async () => {
-    const filePath = resolve($dirname(import.meta.url), 'files', 'fileToRemove.txt')
+    const filePath = resolve($dirName(import.meta.url), 'files', 'fileToRemove.txt')
 
-    notExistOrError(filePath)
+    notExistError(filePath)
 
     await rm(filePath)
 };

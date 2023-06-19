@@ -1,15 +1,14 @@
 import {cp} from "fs/promises";
-import {$dirname} from "../utils/globals.js";
+import {$dirName, existError, notExistError} from "../utils";
 import {resolve} from "path";
-import {existOrError, notExistOrError} from '../utils/helpers.js'
 
 const copy = async () => {
-    const dirPath = $dirname(import.meta.url)
+    const dirPath = $dirName(import.meta.url)
     const targetFolder = resolve(dirPath, 'files')
     const copyFolder = resolve(dirPath, 'files_copy')
 
-    notExistOrError(targetFolder)
-    existOrError(copyFolder)
+    notExistError(targetFolder);
+    existError(copyFolder);
 
     await cp(targetFolder, copyFolder, {
         recursive: true

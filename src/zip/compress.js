@@ -1,10 +1,10 @@
 import {createReadStream, createWriteStream} from "fs";
-import {$dirname} from "../utils/globals.js";
+import {$dirName} from "../utils";
 import {dirname, resolve} from "path";
 import {createGzip} from "zlib";
 
 const compress = async () => {
-    const filePath = resolve($dirname(import.meta.url), 'files', 'fileToCompress.txt')
+    const filePath = resolve($dirName(import.meta.url), 'files', 'fileToCompress.txt')
     const stream = createReadStream(filePath, {encoding: 'utf-8'})
 
     const gzPath = resolve(dirname(filePath), 'archive.gz')

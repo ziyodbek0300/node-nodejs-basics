@@ -1,5 +1,5 @@
-import { dirname } from "path";
-import { fileURLToPath } from "url";
+import {dirname} from "path";
+import {fileURLToPath} from "url";
 
-export const $filename = (url) => fileURLToPath(url);
-export const $dirname = (url) => dirname($filename(url));
+export const $fileName = (url) => fileURLToPath(url);
+export const $dirName = (url) => dirname($filename(url));
