@@ -1,12 +1,11 @@
 const parseArgs = () => {
-    const argsList = process.argv.slice(2);
-
-    for (let i = 0; i < argsList.length; i += 2) {
-        const propName = argsList[i].substring(2);
-        const value = argsList[i + 1];
-
-        console.log(`${propName} is ${value}`);
+    const userArgs = []
+    const args = process.argv.slice(2)
+    for (let i = 0; i < args.length; i++) {
+        userArgs.push(`${args[i].slice(2)} is ${args[i+1]}`)
+        i++
     }
+    console.log(userArgs.join(', '))
 };
 
 parseArgs();

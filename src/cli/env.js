@@ -1,15 +1,11 @@
-const parseEnv = () => {
-    const env =
-        process.env;
-    const keysList = Object.keys(env);
-
-    for (let k = 0; k < keysList.length; k++) {
-        const elK = keysList[k];
-        const nKey = `RSS_${elK}`;
-        const result = `${nKey}=${env[elK]}`
-
-        console.log(result);
+const parseEnv = (prefix = 'RSS_') => {
+    const envs = []
+    for (const key in process.env) {
+        if (key.startsWith(prefix)) {
+            envs.push(`${key}=${process.env[key]}`)
+        }
     }
+    console.log(envs.join('; '))
 };
 
 parseEnv();

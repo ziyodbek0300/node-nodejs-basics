@@ -1,9 +1,11 @@
-import {cpus} from 'os'
-import {resolve} from 'path';
-import {Worker, isMainThread} from 'worker_threads';
-import {$dirName} from '../utils'
+
+import { cpus } from 'os'
+import { resolve } from 'path';
+import { Worker, isMainThread } from 'worker_threads';
+import { $dirname } from '../utils/globals.js'
 
 const performCalculations = async () => {
+    // Write your code here
     if (isMainThread) {
         const cpu = cpus()
         const workers = []
@@ -11,7 +13,7 @@ const performCalculations = async () => {
 
         for (let i = 0; i < cpu.length; i++) {
             const wt = new Promise((res, rej) => {
-                const worker = new Worker(resolve($dirName(import.meta.url), 'worker.js'), {workerData: i})
+                const worker = new Worker(resolve($dirname(import.meta.url), 'worker.js'), {workerData: i})
 
                 worker.on('message', (data) => {
                     results.push({status: 'resolved', value: data})
@@ -28,9 +30,11 @@ const performCalculations = async () => {
 
             workers.push(wt)
         }
+
         await Promise.all(workers)
 
         console.log('results', results)
+
     }
 
 };

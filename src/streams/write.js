@@ -1,20 +1,20 @@
-import {createWriteStream} from "fs";
-import {$dirName} from "../utils";
-import {resolve} from "path";
+import { createWriteStream } from "fs";
+import { $dirname } from "../utils/globals.js";
+import { resolve } from "path";
 
 const write = async () => {
-    const filePath = resolve($dirName(import.meta.url), 'files', 'fileToWrite.txt')
-    const stream = createWriteStream(filePath, {encoding: 'utf-8'})
+    const filePath = resolve($dirname(import.meta.url), 'files', 'fileToWrite.txt')
+    const stream = createWriteStream(filePath, { encoding: 'utf-8' })
 
     process.stdin
-        .on('data', (data) => {
-            if (data) {
-                stream.write(data)
-            }
-        })
-        .on('close', () => {
-            stream?.close()
-        })
+    .on('data', (data) => {
+        if(data) {
+            stream.write(data)
+        }
+    })
+    .on('close', () => {
+        stream?.close()
+    })
 };
 
 await write();
